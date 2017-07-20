@@ -37,6 +37,7 @@ class App extends Component {
           <Route path="/contacts/:_id"  component={ContactsPage} />
           <Route path="/contact/:_id/:_pgtype" component={ContactsPage} />
         </div> 
+        
         <footer className="footer">
           <div className="container">
             <p className="text-muted">MongoDB + Express + React + Redux + Node.js (MERRN)</p>
