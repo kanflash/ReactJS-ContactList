@@ -6,12 +6,31 @@ import { connect } from 'react-redux';
 import { fetchContacts, deleteContact } from './actions';
 
 class ContactsPage extends React.Component {
+
+  state = {
+    redirect: null,
+    _id: null
+  }
+  
   componentDidMount() {
     this.props.fetchContacts();
   }
 
   componentWillReceiveProps = () => {
     
+  }
+
+  deleteContact = (_id) => {
+    return this.props.deleteContact(_id).then(
+      (response) => { 
+          debugger;
+          this.setState({ redirect: "delete" });
+      }
+    );
+  }
+
+  handleContactState = (valObj) => {
+    this.setState(valObj);
   }
 
   render() {
@@ -31,10 +50,10 @@ class ContactsPage extends React.Component {
                 </Link>
               </div>
             </div>
-            <ContactsList contacts={this.props.contacts} fetchContact={this.props.fetchContact} deleteContact={this.props.deleteContact} />
+            <ContactsList contacts={this.props.contacts} deleteContact={this.deleteContact}/>
           </div>
           <div className="col-md-8">
-            <ContactFormPage contact={this.props.contact} _id={this.props._id} _pgtype={this.props._pgtype}/>
+            <ContactFormPage contact={this.props.contact} deleteContact={this.deleteContact} _id={this.props._id} _pgtype={this.props._pgtype} contactPgState={this.state}/>
           </div>
           </div>
       </div>
@@ -50,7 +69,7 @@ ContactsPage.propTypes = {
 
 function mapStateToProps(state, props) {
   const { match } = props;
-  //debugger;
+  debugger;
   if (match && match.params._id ) {
     return {
       contacts: state.contacts,

@@ -208,7 +208,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
                 {!!contactDetail.errors.global && <p> <em>Can't save. Please correct form validation errors!</em> </p>}
                 {!contactDetail._id &&
                 
-                    <button className={classnames('btn', 'btn-success', {disabled:!contactDetail.modified})} onClick={handleSubmit}>
+                    <button className={classnames('btn', 'btn-success', {disabled:!contactDetail.modified})} disabled={!contactDetail.modified} onClick={handleSubmit}>
                     <span className="glyphicon glyphicon-ok"></span>
                     <span> Add</span>
                     </button>
@@ -216,7 +216,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
                 }
                 {!!contactDetail._id &&
                 
-                    <button className={classnames('btn', 'btn-success', {disabled:!contactDetail.modified})} onClick={handleSubmit}>
+                    <button className={classnames('btn', 'btn-success', {disabled:!contactDetail.modified})} disabled={!contactDetail.modified} onClick={handleSubmit}>
                     <span className="glyphicon glyphicon-ok"></span>
                     <span> Save Edits</span>
                     </button>

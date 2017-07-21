@@ -33,7 +33,6 @@ class App extends Component {
         
         <div className="container">
           <Route exact path="/contacts" component={ContactsPage} />
-          <Redirect from="/" to="/contacts"/>
           <Route path="/contacts/:_id"  component={ContactsPage} />
           <Route path="/contact/:_id/:_pgtype" component={ContactsPage} />
         </div> 
