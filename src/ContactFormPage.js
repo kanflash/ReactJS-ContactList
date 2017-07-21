@@ -33,8 +33,8 @@ class ContactFormPage extends React.Component {
   deleteContact = (_id) => {
     return this.props.deleteContact(_id).then(
       (response) => { 
-          debugger;
-          this.setState({ redirect: "delete" });
+          //debugger;
+          //this.setState({ redirect: "delete" });
       }
     );
   }
@@ -42,7 +42,7 @@ class ContactFormPage extends React.Component {
   toggleform = () => {
       const { contact } = this.props;
       let switchform;
-      debugger;   
+      //debugger;   
       if(this.state.redirect) //for Add or Update
       {
         switchform = (this.state.redirect !== "delete") ? 
@@ -53,6 +53,7 @@ class ContactFormPage extends React.Component {
       {
         switchform = <ContactForm
           contact={this.props.contact} 
+          deleteContact = {this.deleteContact}
           saveContact={this.saveContact}
         />
       }
@@ -79,9 +80,7 @@ class ContactFormPage extends React.Component {
   render() {
     return (
       <div>
-        
         { this.toggleform() }
-        
       </div>
     );
   }
@@ -89,7 +88,7 @@ class ContactFormPage extends React.Component {
 
 function mapStateToProps(state, props) {
   const { contact } = props;
-  debugger;
+  //debugger;
   if (contact && contact._id) {
     return {
       contact: state.contacts.find(item => item._id === contact._id)

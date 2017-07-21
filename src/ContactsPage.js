@@ -50,7 +50,7 @@ ContactsPage.propTypes = {
 
 function mapStateToProps(state, props) {
   const { match } = props;
-  debugger;
+  //debugger;
   if (match && match.params._id ) {
     return {
       contacts: state.contacts,
