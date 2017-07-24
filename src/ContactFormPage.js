@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { saveContact, updateContact, deleteContact } from './actions';
+import { saveContact, updateContact } from './actions';
 import ContactForm from './ContactForm';
 
 class ContactFormPage extends React.Component {
@@ -11,8 +11,12 @@ class ContactFormPage extends React.Component {
   }
 
   componentWillReceiveProps = () => { 
-    this.setState({ redirect: null });
+    //this.setState({ redirect: null });
+
+    this.setState({ redirect: this.props.contactPgState.redirect });
+
   }
+
 
   saveContact = ({_id, fname, lname, dt, company, email, phone, cover }) => {
     if (_id) {
@@ -30,37 +34,37 @@ class ContactFormPage extends React.Component {
     }
   }
 
-  deleteContact = (_id) => {
+  /*deleteContact = (_id) => {
     return this.props.deleteContact(_id).then(
       (response) => { 
           debugger;
           this.setState({ redirect: "delete" });
       }
     );
-  }
+  }*/
 
   toggleform = () => {
       const { contact } = this.props;
       let switchform;
       debugger;   
-      if(this.state.redirect) //for Add or Update
+      if(this.state.redirect || this.props.contactPgState.redirect) //for Add or Update
       {
-        switchform = (this.state.redirect !== "delete") ? 
+        switchform = (this.state.redirect !== "delete" && this.props.contactPgState.redirect !== "delete") ? 
           <Redirect to={`/contact/${this.state._id}/detail`} /> : 
           switchform = <Redirect to={"/contacts"} />;
       } 
-      else if((contact && this.props._pgtype === "edit") || (!contact && this.props._id === "new")) //for Edit or New
+      else if((this.props._pgtype === "edit") || (!contact && this.props._id === "new")) //for Edit or New
       {
         switchform = <ContactForm
           contact={this.props.contact} 
           saveContact={this.saveContact}
         />
       }
-      else if(contact && this.props._pgtype === "detail") //for detail view
+      else if(this.props._pgtype === "detail") //for detail view
       {
         switchform = <ContactForm
           contact={this.props.contact}
-          deleteContact = {this.deleteContact}
+          deleteContact = {this.props.deleteContact}
           isContactInfo = "true"
         />
       } 
@@ -79,9 +83,7 @@ class ContactFormPage extends React.Component {
   render() {
     return (
       <div>
-        
         { this.toggleform() }
-        
       </div>
     );
   }
@@ -89,7 +91,7 @@ class ContactFormPage extends React.Component {
 
 function mapStateToProps(state, props) {
   const { contact } = props;
-  debugger;
+  //debugger;
   if (contact && contact._id) {
     return {
       contact: state.contacts.find(item => item._id === contact._id)
@@ -99,4 +101,4 @@ function mapStateToProps(state, props) {
   return { contact: null };
 }
 
-export default connect(mapStateToProps, { saveContact, updateContact, deleteContact })(ContactFormPage);
+export default connect(mapStateToProps, { saveContact, updateContact })(ContactFormPage);
