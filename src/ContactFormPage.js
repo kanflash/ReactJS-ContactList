@@ -51,7 +51,8 @@ class ContactFormPage extends React.Component {
       const { contact } = this.props;
       let switchform;
       debugger;   
-      if(this.state.redirect || this.props.contactPgState.redirect) //for Add or Update
+      //|| this.props.contactPgState.redirect
+      if(this.state.redirect) //for Add or Update
       {
         //&& this.props.contactPgState.redirect !== "delete"
         switchform = (this.state.redirect !== "delete") ? 
