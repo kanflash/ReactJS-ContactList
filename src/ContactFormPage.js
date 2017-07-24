@@ -13,7 +13,11 @@ class ContactFormPage extends React.Component {
   componentWillReceiveProps = () => { 
     //this.setState({ redirect: null });
 
-    this.setState({ redirect: this.props.contactPgState.redirect });
+    //this.setState({ redirect: this.props.contactPgState.redirect });
+    debugger;
+    this.setState((prevState, props) => ({
+      redirect: props.contactPgState.redirect
+    }));
 
   }
 
@@ -49,7 +53,8 @@ class ContactFormPage extends React.Component {
       debugger;   
       if(this.state.redirect || this.props.contactPgState.redirect) //for Add or Update
       {
-        switchform = (this.state.redirect !== "delete" && this.props.contactPgState.redirect !== "delete") ? 
+        //&& this.props.contactPgState.redirect !== "delete"
+        switchform = (this.state.redirect !== "delete") ? 
           <Redirect to={`/contact/${this.state._id}/detail`} /> : 
           switchform = <Redirect to={"/contacts"} />;
       } 
