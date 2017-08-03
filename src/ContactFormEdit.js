@@ -74,7 +74,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
         const { _id, fname, lname, dt, company, email, phone, cover } = contactDetail;
         handleFormState({ loading: true });
         saveContact({ _id, fname, lname, dt, company, email, phone, cover })
-            .catch((err) => err.response.then(({errors}) => handleFormState({ errors, loading: false })));
+            .catch((err) => err.response.json().then(({errors}) => handleFormState({ errors, loading: false })));
         }
     }
 
@@ -88,7 +88,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
 
                     {!!contactDetail.errors.global && <div className="ui negative message"><p>{contactDetail.errors.global}</p></div>}
 
-                    <div className={classnames('form-group', { error: !!contactDetail.errors.fname})}>
+                    <div className={classnames('form-group', { 'has-error': !!contactDetail.errors.fname})}>
                         <label className="control-label" htmlFor="form-fname">First Name</label>
                         <input
                             id="form-fname"
@@ -103,7 +103,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
                         <span>{contactDetail.errors.fname}</span>
                     </div>
                     
-                    <div className={classnames('form-group', { error: !!contactDetail.errors.lname})}>
+                    <div className={classnames('form-group', { 'has-error': !!contactDetail.errors.lname})}>
                         <label className="control-label" htmlFor="form-lname">Last Name</label>
                         <input
                             id="form-lname"
@@ -118,7 +118,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
                         <span>{contactDetail.errors.lname}</span>
                     </div>
                     
-                    <div className={classnames('form-group', { error: !!contactDetail.errors.dt})}>
+                    <div className={classnames('form-group', { 'has-error': !!contactDetail.errors.dt})}>
                         <label className="control-label" htmlFor="form-dt">Birth Day</label>
                         <input 
                             id="form-dt"
@@ -133,7 +133,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
                         <span>{contactDetail.errors.dt}</span>
                     </div>
                     
-                    <div className={classnames('form-group', { error: !!contactDetail.errors.company})}>
+                    <div className={classnames('form-group', { 'has-error': !!contactDetail.errors.company})}>
                         <label className="control-label" htmlFor="form-company">Company</label>
                         <input
                             id="form-company"
@@ -148,7 +148,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
                         <span>{contactDetail.errors.company}</span>
                     </div>
                     
-                    <div className={classnames('form-group', { error: !!contactDetail.errors.email})}>
+                    <div className={classnames('form-group', { 'has-error': !!contactDetail.errors.email})}>
                         <label className="control-label" htmlFor="form-email">E-Mail Address</label>
                         <input
                             id="form-email"
@@ -164,7 +164,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
                         <span>{contactDetail.errors.email}</span>
                     </div>
                     
-                    <div className={classnames('form-group', { error: !!contactDetail.errors.phone})}>
+                    <div className={classnames('form-group', { 'has-error': !!contactDetail.errors.phone})}>
                         <label className="control-label" htmlFor="form-phone">Phone</label>
                         <input
                             id="form-phone"
@@ -180,7 +180,7 @@ export default function ContactFormEdit({ contactDetail, handleFormState, saveCo
                         <span>{contactDetail.errors.phone}</span>
                     </div>
 
-                    <div className={classnames('form-group', { error: !!contactDetail.errors.cover})}>
+                    <div className={classnames('form-group', { 'has-error': !!contactDetail.errors.cover})}>
                         <label className="control-label" htmlFor="form-cover">Photo</label>
                         <input
                             id="form-cover"

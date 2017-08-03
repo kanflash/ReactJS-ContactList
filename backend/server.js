@@ -4,10 +4,7 @@ import bodyParser from 'body-parser';
 
 const app = express();
 app.use(bodyParser.json());
-//const dbUrl = 'mongodb://localhost/crudwithredux';
-const dbUrl = `mongodb://kanflash:pass1234@cluster0-shard-00-00-c09gt.mongodb.net:27017,
-              cluster0-shard-00-01-c09gt.mongodb.net:27017,
-              cluster0-shard-00-02-c09gt.mongodb.net:27017/contactlist?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`;
+const dbUrl = 'mongodb://localhost/crudwithredux';
 
 function validate(data) {
   let errors = {};
