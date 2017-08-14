@@ -20,7 +20,7 @@ export default function ContactFormDetail({ contactDetail, deleteContact }) {
                 </div>
             </div>
             <div className="col-sm-12">
-            <Link className='btn btn-success' to={`/contact/${!!contactDetail && contactDetail._id}/edit`} title="Edit" role="button">
+            <Link className='btn btn-success' to={`/contacts/${!!contactDetail && contactDetail._id}/edit`} title="Edit" role="button">
                 <span className="glyphicon glyphicon-ok"></span><span> Edit</span>
             </Link>
             <button className="btn btn-danger" title="Remove" onClick={() =>  deleteContact(!!contactDetail && contactDetail._id)}>

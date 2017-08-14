@@ -27,10 +27,10 @@ export default function ContactCard({ contact, deleteContact }) {
           <span className="visible-xs"> <span className="text-muted">{contact.email}</span><br/></span>
       </div>
       <div className="col-xs-12 col-sm-2">
-          <Link to={`/contact/${contact._id}/detail`} title="Detail" role="button">
+          <Link to={`/contacts/${contact._id}/detail`} title="Detail" role="button">
               <span className="glyphicon glyphicon-th-list"></span><span></span>
           </Link>
-          <Link to={`/contact/${contact._id}/edit`} title="Edit" role="button">
+          <Link to={`/contacts/${contact._id}/edit`} title="Edit" role="button">
               <span className="glyphicon glyphicon-pencil"></span><span></span>
           </Link>
           <div title="Remove" onClick={() => deleteContact(contact._id)}>
