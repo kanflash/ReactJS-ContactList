@@ -33,8 +33,8 @@ class App extends Component {
         
         <div className="container">
           <Route exact path="/contacts" component={ContactsPage} />
-          <Route path="/contacts/:_id"  component={ContactsPage} />
-          <Route path="/contact/:_id/:_pgtype" component={ContactsPage} />
+          <Route exact path="/contacts/:_id"  component={ContactsPage} />
+          <Route path="/contacts/:_id/:_pgtype" component={ContactsPage} />
         </div> 
         
         <footer className="footer">

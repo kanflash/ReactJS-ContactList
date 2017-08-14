@@ -56,7 +56,7 @@ class ContactFormPage extends React.Component {
       {
         //&& this.props.contactPgState.redirect !== "delete"
         switchform = (this.state.redirect !== "delete") ? 
-          <Redirect to={`/contact/${this.state._id}/detail`} /> : 
+          <Redirect to={`/contacts/${this.state._id}/detail`} /> : 
           switchform = <Redirect to={"/contacts"} />;
       } 
       else if((this.props._pgtype === "edit") || (!contact && this.props._id === "new")) //for Edit or New
